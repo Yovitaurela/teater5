@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Pentas - Teater Institut Unesa</title>
+
+    <!-- Import Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome untuk icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            max-height: 6.5rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 4%;
+            background-color: rgba(0, 0, 0, 0.398);
+            border-bottom: 1px solid #F1DBBF;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            /* Tambahkan transisi */
+        }
+
+        .navbar.scrolled {
+            background-color: #570303;
+            padding: 1.2rem 4%;
+        }
+
+
+        .navbar .navbar-nav a {
+            color: #fff;
+            display: inline-block;
+            font-size: 1.4rem;
+            margin: 0 1rem;
+        }
+
+        .navbar .navbar-nav a:hover {
+            color: #F1DBBF;
+        }
+
+        .navbar .navbar-nav a::after {
+            content: '';
+            display: block;
+            padding-bottom: 0.5rem;
+            border-bottom: 0.1rem solid #924A4A;
+            transform: scaleX(0);
+            transition: 0.2s linear;
+        }
+
+        .navbar .navbar-nav a:hover::after {
+            transform: scaleX(0.5);
+        }
+
+        .navbar .navbar-extra a {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin: 0 1rem;
+        }
+
+        .navbar .navbar-extra a:hover {
+            color: #F1DBBF;
+        }
+
+        button {
+            background-color: #a8a8a8a2;
+            color: white;
+            border-radius: 50px;
+            padding: 0.5em 2em;
+            cursor: pointer;
+            align-self: center;
+            text-transform: none;
+        }
+
+        button:hover {
+            background-color: #484441;
+        }
+
+        button a {
+            color: white;
+            /* Membuat teks tombol berwarna putih */
+            text-decoration: none;
+        }
+
+        #hamburger-menu {
+            display: none;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+       /* Header Galeri */
+        .gallery-header {
+            text-align: center;
+            padding: 100px 0;
+            position: relative; /* Menentukan posisi relatif untuk elemen pseudo */
+            color: white; /* Warna teks */
+            overflow: hidden; /* Agar efek blur tidak meluas */
+        }
+
+        .gallery-header::before {
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            right: 0; 
+            bottom: 0; 
+            background: url('EM1.JPG') no-repeat center center fixed; 
+            background-size: cover; 
+            filter: blur(4px); 
+            z-index: 1;
+        }
+
+        .gallery-header > * {
+            position: relative; 
+            z-index: 2; 
+        }
+
+        .gallery-header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gallery-header p {
+            font-size: 18px;
+        }
+
+        .gallery-header .scroll-icon {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        /* Efek bounce untuk icon scroll */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Galeri Style */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 1200px;
+
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Lightbox Modal Style */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            padding: 40px 0;
+        }
+
+        .lightbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+        }
+
+        .lightbox-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #f1f1f1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header h1 {
+                font-size: 36px;
+            }
+
+            .gallery-header p {
+                font-size: 16px;
+            }
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #570303;
+            padding: 25px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: medium;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 18px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .footer-links,
+        .footer-contact,
+        .footer-university {
+            text-align: center;
+        }
+
+        .footer-links ul,
+        .footer-contact ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links ul li,
+        .footer-contact ul li {
+            margin: 5px 0;
+            font-size: 1em;
+            list-style-type: none;
+        }
+
+        .footer-links ul li a,
+        .footer-contact ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links ul li a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .footer-links ul li a:hover,
+        .footer-contact ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-university p {
+            font-size: 16px;
+        }
+
+        .footer-university img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 0;
+            font-size: 12px;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+
+
+        /* Media Queries */
+
+        /* Laptop */
+        @media (max-width: 1366px) {
+            html {
+                font-size: 75%;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 758px) {
+            html {
+                font-size: 62.5%;
+            }
+        }
+
+        /* Mobile Phone */
+        @media (max-width: 450px) {
+            html {
+                font-size: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--Navbar start-->
+    <nav class="navbar">
+        <header class="header">
+            <a href="#" class="logo">
+                <img src="logo teater.png" width="50" height="50" alt="">
+            </a>
+    
+        </header>
+
+        <div class="navbar-nav">
+            <a href="index.html">Home</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="galeri.html">Gallery</a>
+            <a href="About.html">About us</a>
+        </div>
+
+        <div class="navbar-extra">
+            <button><a href="login.html">Login</a></button>
+            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Header Galeri -->
+    <header class="gallery-header">
+        <h1>Galeri Pentas</h1>
+        <p>Dokumentasi dari pementasan-pementasan terbaik Teater Institut Unesa</p>
+        <i class="fas fa-chevron-down scroll-icon"></i>
+    </header>
+
+    <!-- Galeri Foto -->
+    <section class="gallery">
+        <!-- Pentas 1 -->
+        <div class="gallery-item" onclick="openLightbox(0)">
+            <img src="ikrab12.JPG" alt="Pentas Teater 1">
+            <div class="gallery-caption">
+                <h3>Ikrab #7</h3>
+            </div>
+        </div>
+        <!-- Pentas 2 -->
+        <div class="gallery-item" onclick="openLightbox(1)">
+            <img src="ND8.JPG" alt="Pentas Teater 2">
+            <div class="gallery-caption">
+                <h3>Ngunduh Dulur</h3>
+            </div>
+        </div>
+        <!-- Pentas 3 -->
+        <div class="gallery-item" onclick="openLightbox(2)">
+            <img src="GK2.JPG" alt="Pentas Teater 3">
+            <div class="gallery-caption">
+                <h3>Gelar Karya #4</h3>
+            </div>
+        </div>
+         <!-- Pentas 4 -->
+         <div class="gallery-item" onclick="openLightbox(3)">
+            <img src="EM3.JPG" alt="Pentas Teater 4">
+            <div class="gallery-caption">
+                <h3>Etalase Muda #9</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <i class="fas fa-times lightbox-close" onclick="closeLightbox()"></i>
+        <div class="lightbox-grid" id="lightboxGrid">
+            <!-- Gambar akan diisi secara dinamis menggunakan JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <footer>
+        <br>
+        <div class="footer-container">
+            <!-- Bagian Logo -->
+            <div class="footer-logo">
+                <img src="logo teater.png" alt="Institut Theater">
+                <p>Institut Theater</p>
+            </div>
+
+            <!-- Bagian Sosial Media -->
+            <div class="footer-links">
+                <p>Sosial Media</p>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/teater_institut" target="_blank">
+                            <img src="icon-ig.png" alt="Instagram" class="social-icon"> @teater_institut
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@teaterinstitut?si=s2QrpKwmQXMqsVVH" target="_blank">
+                            <img src="icon-yt.png" alt="YouTube" class="social-icon"> TEATER INSTITUT
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bagian Kontak -->
+            <div class="footer-contact">
+                <p>Kontak Kami</p>
+                <ul>
+                    <li>
+                        <a href="https://wa.me/6287820697596" target="_blank">
+                            <img src="icon-wa.png" alt="Whatsapp" class="social-icon"> +62 878-2069-7596 (Hanna)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bagian Universitas -->
+            <div class="footer-university">
+                <img src="logo unesa.png" alt="UNESA">
+                <p>Universitas<br>Negeri<br>Surabaya</p>
+            </div>
+        </div>
+
+        <!-- Bagian Hak Cipta -->
+        <div class="footer-bottom">
+            ©2024 by Kemasan Sachet
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Script untuk Lightbox Grid -->
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const galleries = 
+        [
+            [
+                "ikrab1.JPG",
+                "ikrab2.JPG",
+                "ikrab3.JPG",
+                "ikrab4.JPG",
+                "ikrab5.JPG",
+                "ikrab6.JPG",
+                "ikrab7.JPG",
+                "ikrab8.JPG",
+                "ikrab9.JPG",
+                "ikrab10.JPG",
+                "ikrab11.JPG",
+                "ikrab12.JPG"
+            ],
+            [
+                "ND1.JPG",
+                "ND2.JPG",
+                "ND3.JPG",
+                "ND4.JPG",
+                "ND5.JPG",
+                "ND6.JPG",
+                "ND7.JPG",
+                "ND8.JPG",
+                "ND9.JPG",
+                "ND10.JPG",
+                "ND11.JPG",
+                "ND12.JPG"
+            ],
+            [
+                "GK1.JPG",
+                "GK2.JPG",
+                "GK3.JPG",
+                "GK4.jpg",
+                "GK5.jpg",
+                "GK6.jpg",
+                "GK7.jpg",
+                "GK8.jpg",
+                "GK9.jpg",
+                "GK10.jpg",
+                "GK11.jpg",
+                "GK12.jpg",
+
+            ],
+            [
+                "EM1.JPG",
+                "EM2.JPG",
+                "EM3.JPG",
+                "EM4.jpg",
+                "EM5.jpg",
+                "EM6.jpg",
+                "EM7.jpg",
+                "EM8.jpg",
+                "EM9.jpg",
+                "EM10.jpg",
+                "EM11.jpg",
+                "EM12.jpg",
+            ]
+        ];
+
+        function openLightbox(index) {
+            const lightboxGrid = document.getElementById('lightboxGrid');
+            lightboxGrid.innerHTML = '';  // Clear any previous images
+
+            // Insert images for the clicked gallery
+            galleries[index].forEach(imageSrc => {
+                const imgElement = document.createElement('img');
+                imgElement.src = imageSrc;
+                lightboxGrid.appendChild(imgElement);
+            });
+
+            document.getElementById('lightbox').style.display = 'flex';  // Show the lightbox
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Menyembunyikan navbar saat galeri diklik
+        document.querySelector(".gallery").addEventListener("click", function() {
+        document.querySelector(".navbar").style.display = "none";
+        });
+
+        // Menampilkan kembali navbar saat galeri ditutup
+        document.querySelector(".close-gallery").addEventListener("click", function(event) {
+        document.querySelector(".navbar").style.display = "block"; 
+        });
+
+        feather.replace();
+    </script>
+
+</body>
+</html>
