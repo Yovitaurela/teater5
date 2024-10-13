@@ -1,0 +1,295 @@
+:root {
+    --primary: #ba0404;
+    --bg: #23201e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #700000;
+    color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+    background-color: rgba(0, 0, 0, 0.398);
+    border-bottom: 1px solid #F1DBBF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Tambahkan transisi */
+}
+
+.navbar.scrolled {
+    background-color: #570303;
+    padding: 1.2rem 4%; 
+}
+
+
+.navbar .navbar-nav a {
+    color:#fff;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+    color: #F1DBBF;
+}
+
+.navbar .navbar-nav a::after {
+    content: '';
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid #924A4A;
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.5);
+}
+
+.navbar .navbar-extra a {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin: 0 1rem;
+}
+
+.navbar .navbar-extra a:hover {
+    color: #F1DBBF;
+}
+
+.navbar .navbar-extra button {
+    background-color: #a8a8a8a2;
+    color: white;
+    border-radius: 50px;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    align-self: center;  
+    text-transform: none;
+}
+
+button:hover {
+    background-color: #484441;
+}
+
+button a {
+    color: white;  /* Membuat teks tombol berwarna putih */
+    text-decoration: none;
+}
+#hamburger-menu {
+    display: none;
+}
+
+/* Schedule Section */
+.schedule-section {
+    font-size: large;
+    padding: 2em;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #CC9966;
+    padding: 2rem;
+}
+
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+    padding-top: 1em;
+    background-color: #A46E42;
+    padding: 2.5em;
+    border-radius: 20px;
+}
+
+/* Event Cards */
+.event-card {
+    background-color: #ECE0D1;
+    color: black;
+    padding: 1em;
+    text-align: center;
+    width: 245px;
+    height: 240px;
+    border-radius: 5px;
+}
+
+.event-card .date {
+    font-size: 1.2em;
+    color: #5e3b3b;
+}
+
+.event-card .month {
+    font-size: 0.7em;
+    color: #030303;
+}
+
+.event-card .year {
+    font-size: 0.7em;
+    color: #030303;
+    padding-bottom: 0.5rem;
+}
+
+.event-card h2 {
+    margin: 0.5em 0;
+    color: #330000;
+    font-size: 1.1em;
+    padding: 0.3em;
+}
+
+.event-card p {
+    font-size: 1.2rem;
+    color: #330000;
+    padding-bottom: 2.3em;
+}
+
+button {
+    background-color: #990000;
+    color: white;
+    border: none;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    align-self: center;  
+    text-transform: none;
+}
+
+button:hover {
+    background-color: #660000;
+}
+
+button a {
+    color: white;  /* Membuat teks tombol berwarna putih */
+    text-decoration: none;
+}
+
+
+/* Footer Section */
+footer {
+    background-color: #570303;
+    padding: 25px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: medium;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: left;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.footer-logo p {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-links, .footer-contact, .footer-university {
+    text-align: center;
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li, .footer-contact ul li {
+    margin: 5px 0;
+    font-size: 1em;
+    list-style-type: none;
+}
+
+.footer-links ul li a, .footer-contact ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.footer-links ul li a:hover, .footer-contact ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-university p {
+    font-size: 16px;
+}
+.footer-university img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 0; 
+    font-size: 12px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* Media Queries */
+
+/* Laptop */
+@media (max-width: 1366px) {
+    html{
+        font-size: 75%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 758px) {
+    html{
+        font-size: 62.5%;
+    }
+}
+
+/* Mobile Phone */
+@media (max-width: 450px) {
+    html{
+        font-size: 55%;
+    }
+}

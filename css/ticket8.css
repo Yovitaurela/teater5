@@ -1,0 +1,142 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    padding-top: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* Background Image with Blur Effect */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../img/istitut-1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    backdrop-filter: blur(2px); /* Blur effect */
+    z-index: -1;
+}
+
+/* Ensure the form is on top of the background */
+.form-container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent form background */
+    padding: 2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    padding: 2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px;
+}
+
+/* Form Heading */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+/* Event Info Section */
+.event-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.poster img {
+    width: 100%; /* Poster 1:1 Aspect Ratio */
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Event Details */
+.event-details {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.event-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.event-date {
+    color: #555;
+    margin-bottom: 1em;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+.form-group input[type="submit"] {
+    background-color: #924A4A;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #763333;
+}
+
+/* Product Price and Total */
+.form-group span {
+    font-weight: bold;
+    color: #924A4A;
+}
+
+/* Produk Paragraph */
+.form-group p {
+    font-size: 1.1em;
+    color: #333;
+}

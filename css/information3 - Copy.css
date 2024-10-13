@@ -1,0 +1,257 @@
+:root {
+    --primary: #924A4A;
+    --bg: #F1DBBF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+    background-color: rgba(0, 0, 0, 0.398);
+    border-bottom: 1px solid #F1DBBF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Tambahkan transisi */
+}
+
+.navbar.scrolled {
+    background-color:#570303;
+    padding: 1.2rem 4%; 
+}
+
+
+.navbar .navbar-nav a {
+    color:#fff;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+    color: #F1DBBF;
+}
+
+.navbar .navbar-nav a::after {
+    content: '';
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid #924A4A;
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.5);
+}
+
+#hamburger-menu {
+    display: none;
+}
+
+/* Information */
+main {
+    padding: 100px;
+}
+
+.information {
+    background-color: #f6edd8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.information h1 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 7px;
+    color: #a3703d;
+}
+
+.information h2 {
+    text-align: center;
+    color: #5f2c2c;
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+}
+
+.poster img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.description {
+    flex: 1;
+}
+
+.description h3 {
+    color: #a3703d;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.description p, .description ul {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #5f2c2c;
+}
+
+.description ul {
+    list-style: none;
+}
+
+.description ul li {
+    background-color: #e8d8b5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.ticket-status {
+    margin-top: 10px;
+    padding: 10px;
+    padding-bottom: 10px;
+    background-color: #9a9393;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #bdb5b5;
+    font-size: 16px;
+}
+
+/* Footer Section */
+footer {
+    background-color: #570303;
+    padding: 25px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: medium;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: left;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.footer-logo p {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-links, .footer-contact, .footer-university {
+    text-align: center;
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li, .footer-contact ul li {
+    margin: 5px 0;
+    font-size: 1em;
+    list-style-type: none;
+}
+
+.footer-links ul li a, .footer-contact ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links ul li a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.footer-links ul li a:hover, .footer-contact ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-university p {
+    font-size: 16px;
+}
+.footer-university img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 0; 
+    font-size: 12px;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* Media Queries */
+
+/* Laptop */
+@media (max-width: 1366px) {
+    html{
+        font-size: 75%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 758px) {
+    html{
+        font-size: 62.5%;
+    }
+}
+
+/* Mobile Phone */
+@media (max-width: 450px) {
+    html{
+        font-size: 55%;
+    }
+}
